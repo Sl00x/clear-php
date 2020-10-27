@@ -1,41 +1,22 @@
 <?php
 require(dirname(__FILE__) . '/core/app.php');
 require(dirname(__FILE__) . '/core/parsing/renderTemplate.php');
-require(dirname(__FILE__) . '/core/database/orm.php');
+require(dirname(__FILE__) . '/models/UserModel.php');
 
-$orm = new ORM();
-
-/**
- * @method post 
- * @see('/')
- */
-$router->post('/', function () use ($res, $orm){
+$router->post('/', function () use ($res){
 
     //$orm->findAll();
-    /*$view->render([
-        "title" => "Welcome to the jungle my dir !",
-        "user" => 'test',
-        "password" => 'pass',
-        "role" => json(["id" => "1", "name" => "admin"])
-    ],'hello');*/
-
-    $res->send(["coucou" => "est"]);
+    $user = new User();
+    $reslt = $user->findAll();
+    $res->send("Ceci est un page html");
 });
 
+$router->get('/user/(adminid)', function ($id) use ($res){
 
-/**
- * @method post 
- * @see('/mange-merde')
- */
-$router->post('/mange-merde', function () use ($view, $orm){
-
-    $orm->findAll();
-    $view->displays([
-        "title" => "Je suis une merde",
-        "user" => 'test',
-        "password" => 'pass',
-        "role" => json(["id" => "1", "name" => "admin"])
-    ],'hello');
+    //$orm->findAll();
+    $user = new User();
+    $reslt = $user->findAll();
+    $res->send("Ceci est un id ".$id);
 });
 
 $router->dispatch();
