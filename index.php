@@ -1,22 +1,23 @@
 <?php
 require(dirname(__FILE__) . '/core/app.php');
 require(dirname(__FILE__) . '/core/parsing/renderTemplate.php');
-require(dirname(__FILE__) . '/models/UserModel.php');
 
-$router->post('/', function () use ($res){
-    $res->renders([
-        "title" => "Clear PHP",
-        "message" => "Ce text s'affichera une fois appellé."
-    ], "hello"); // call template hello on /view/hello.php
+$router->post('/', function () use ($res, $req){
+    
+    $res->status(404);
+    $res->send([
+        "message" => $req->body('message'),
+        "data" => "fef4erJGefzf5efjkGJlds.Icvefezf5er24egerlkgVUYd"
+    ]);
 });
 
-$router->get('/user/(adminid)', function ($id) use ($res){
-
-    //$orm->findAll();
-    $user = new User();
-    $reslt = $user->findAll();
-    $res->send("Ceci est un id ".$id);
+$router->post('/user/:id', function ($id) use ($res, $req){
+    $res->send([
+        "id" => $id,
+        "message" => $req->body('message'),
+    ]);
 });
+
 
 $router->dispatch();
 

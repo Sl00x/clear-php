@@ -7,6 +7,6 @@ define('SQL_CONNECTOR', [
     'USER' => 'root',
     'PASS' => '',
     'DATABASE' => 'test',
-    'PORT' => '3307'
+    'PORT' => '3306'
 ])
 ?>

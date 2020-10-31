@@ -5,16 +5,15 @@ class View{
         $this->loader = $loader;
         $this->ext = $ext;
     }
-
-    function render($name){
-        $this->loader->load($name . $this->ext);
+    function status($code){
+        http_response_code($code);
     }
-
-    function renders($var, $name){
-        $_SESSION['get_data'] = $var;
-        extract($_SESSION, EXTR_SKIP, "wddx");
+    function render($name, $var=false){
+        if($var){
+            $_SESSION['get_data'] = $var;
+            extract($_SESSION, EXTR_SKIP, "wddx");
+        }
         $this->loader->load($name . $this->ext);
-
     }
 
     function send($data){

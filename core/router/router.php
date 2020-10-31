@@ -1,4 +1,5 @@
 <?php
+require(dirname(__FILE__) . '/parsor.php');
 
 class Router{
     function __construct(){
@@ -21,49 +22,28 @@ class Router{
     }
 
     function get($name, $action){
-        $road = explode('(', $name)[0];
-        $args = explode('(', $name);
-        $my_args = array();
-        foreach ($args as $key) {
-            if($key != $road){
-                array_push($my_args, str_replace(')', '', $key));
-            }
-        }
-
-        $this->routes[$name] = array("type" => "get", "action" => $action, "args" => $my_args);
+        $this->routes[$name] = array("type" => "get", "action" => $action);
     }
 
+    function put($name, $action){
+        $this->routes[$name] = array("type" => "put", "action" => $action);
+    }
+
+    function delete($name, $action){
+        $this->routes[$name] = array("type" => "delete", "action" => $action);
+    }
     function dispatch(){
+        
         foreach($this->routes as $name => $value){
-            if(strpos($name, '(') > 0){
-                $road = explode('(', $name)[0];
-                $args = explode('/', str_replace($road, '', $_SERVER['REQUEST_URI']));
-                $check_arg = ($this->routes[$name]['args']);
-                if(strpos($_SERVER['REQUEST_URI'], $road) > -1){
-                    $checkValidity = true;
-                    foreach ($args as $value) {
-                        if($value == ''){
-                            $checkValidity = false;
-                        }
-                    }
-
-                    if($checkValidity){
-                        return call_user_func_array($this->routes[$name]['action'], $args);
-                    } else {
-                        return call_user_func_array($this->emptyArgs,[$_SERVER['REQUEST_URI']]);
-                    }
+            $uri = (parse($name, $_SERVER['REQUEST_URI']));
+            if($uri != false && $uri['bases'] == $uri['entered']) {
+                if(isset($uri['params']) && sizeof($uri['params']) > 0){
                     
-                    
-                } else {
-                    return call_user_func_array($this->notArgument,[$_SERVER['REQUEST_URI']]);
+                    return call_user_func_array($this->routes[$uri['bases']]['action'], $uri['params']);
                 }
-            } else {
-                if($name == $_SERVER['REQUEST_URI']) {
 
-                        return $this->routes[$name]['action']();
-                }
+                return $this->routes[$name]['action']();
             }
-            
         }
         call_user_func_array($this->notFound,[$_SERVER['REQUEST_URI']]);
     }
