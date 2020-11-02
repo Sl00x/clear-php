@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-light">
+    <div class="container"> <a class="navbar-brand text-primary" href="#">
+        <b><b><a href="index.html" class="text-primary"> CLEAR-PHP</a></b></b>
+      </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar4">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar4">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"> <a class="nav-link" href="#">Documentation</a> </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-4">Ajout de routes</h1>
+          <div class="table-responsive">
+            <table class="table table-bordered ">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Règles</th>
+                  <th>Code</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Route POST</th>
+                  <td>
+                    <code> $router-&gt;post('uri', function() use ($res, $req){ }); </code>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Route GET</th>
+                  <td>
+                    <code> $router-&gt;get('uri', function() use ($res, $req){ }); </code>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Route PUT</th>
+                  <td>
+                    <code> $router-&gt;put('uri', function() use ($res, $req){ }); </code>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>Route DELETE</b></td>
+                  <td>
+                    <code> $router-&gt;delete('uri', function() use ($res, $req){ }); </code>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-4">Templating, Response</h1>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-bordered ">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Règles</th>
+                  <th>Description</th>
+                  <th>Code</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Réponse JSON ou Text</th>
+                  <td>Pour les REST API</td>
+                  <td><code>$res-&gt;send(array());</code> ou <code>$res-&gt;send(string);</code></td>
+                </tr>
+                <tr>
+                  <th>Rendu Template</th>
+                  <td>Rendu d'une page de template</td>
+                  <td><code>$res-&gt;render('name_page');</code> ou <code>$res-&gt;render('name_page', array());</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-4">Status de page</h1>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-bordered ">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Règles</th>
+                  <th>Description</th>
+                  <th>Code</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Status</th>
+                  <td>Change le status de la page</td>
+                  <td><code>$res-&gt;status(code);</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-4">Création d'un template</h1>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="lead">Pour créer une page de template il vous faut accéder au dossier (<code>/views/</code>) et y créer un fichier <code>php</code>. <br> Une fois ceci effectuer vous aurais juste a coder votre page en html. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-4">Recupération de variable dans les templates</h1>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="lead">Pour récupérer les variable rentrer dans la route dans une page de template.<br>Il y a deux fonction principal pour cela: <br>
+          </p>
+          <div class="table-responsive">
+            <table class="table table-striped table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col">Fonction</th>
+                  <th scope="col">Retoure</th>
+                  <th scope="col">Utilisation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">get(variable)</th>
+                  <td><code>return</code> any;</td>
+                  <td>Utilisée pour retourner des liste des variables et les utilisers pour comparaison ou autre.</td>
+                </tr>
+                <tr>
+                  <th scope="row">show(variable)</th>
+                  <td><code>return</code> string;</td>
+                  <td>Utilisée pour affichée une variable en text. Pour eviter d'utiliser les echo <code>get</code>(variable)</td>
+                </tr>
+                <tr></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;<img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16"></pingendo>
+</body>
+
+</html>
