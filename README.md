@@ -14,4 +14,6 @@
 2.	Don't touch **/core/**
 3.	Use **index.php** to start developement
 
+**Documentation**
+[Docs](https://sl00x.github.io/clear-php/index.html)<br/>
 **Enjoy you developement**
